@@ -18,6 +18,6 @@
     "composer/installers": "~1.0"
   },
   "extra": {
-    "installer-name": "ship-nginx-fastcgi-cache-purge"
+    "installer-name": "shipyard/ship-nginx-fastcgi-cache-purge"
   }
 }
