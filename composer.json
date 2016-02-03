@@ -1,0 +1,23 @@
+{
+  "name": "shipyard/ship-nginx-fastcgi-cache-purge",
+  "description": "NGINX FastCGI cache purger",
+  "keywords": ["wordpress"],
+  "homepage": "http://theshipyard.se",
+  "license": "MIT",
+  "version": "0.1",
+  "authors": [
+    {
+      "name": "Richard Sweeney",
+      "email": "richards@theshipyard.se",
+      "homepage": "https://theshipyard.se"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "php"                : ">=5.3.2",
+    "composer/installers": "~1.0"
+  },
+  "extra": {
+    "installer-name": "ship-nginx-fastcgi-cache-purge"
+  }
+}
