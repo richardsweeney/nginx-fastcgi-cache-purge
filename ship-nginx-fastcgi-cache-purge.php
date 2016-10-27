@@ -34,5 +34,5 @@ spl_autoload_register( function( $classname ) {
 });
 
 
-Ship_NGINX_FastCGI_cache_purge::init();
-Ship_NGINX_FastCGI_cache_admin_bar::init();
+\Ship_Nginx_Fastcgi\Cache_Purge::init();
+\Ship_Nginx_Fastcgi\Cache_Admin_Bar::init();
