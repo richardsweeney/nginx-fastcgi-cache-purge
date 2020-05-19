@@ -43,6 +43,13 @@ final class Cache_Admin_Bar {
 	 * @param $wp_admin_bar
 	 */
 	public function add_flush_cache_link( \WP_Admin_Bar $wp_admin_bar ) {
+		$wp_admin_bar->add_menu( [
+			'parent' => $this->menu_id,
+			'id'     => 'ship_ngninx_fastcgi_cache_flush_all',
+			'title'  => __( 'Purge all caches', 'sihp_nfcp' ),
+			'href'   => $this->get_cache_purge_url( 'ship_nginx_purge_cache_all' ),
+		] );
+
 		if ( is_admin() ) {
 			return;
 		}
@@ -51,12 +58,6 @@ final class Cache_Admin_Bar {
 			'id'    => $this->menu_id,
 			'title' => __( 'Purge cache', 'sihp_nfcp' ),
 			'href'  => $this->get_cache_purge_url( 'ship_nginx_purge_cache' ),
-		] );
-		$wp_admin_bar->add_menu( [
-			'parent' => $this->menu_id,
-			'id'     => 'ship_ngninx_fastcgi_cache_flush_all',
-			'title'  => __( 'Purge all caches', 'sihp_nfcp' ),
-			'href'   => $this->get_cache_purge_url( 'ship_nginx_purge_cache_all' ),
 		] );
 	}
 
@@ -68,8 +69,6 @@ final class Cache_Admin_Bar {
 	 * @return string
 	 */
 	private function get_cache_purge_url( $query_arg ) {
-		return esc_url( add_query_arg( [ $query_arg => 1 ], home_url( $_SERVER[ 'REQUEST_URI' ] ) ) );
+		return esc_url( add_query_arg( [ $query_arg => 1 ], home_url( $_SERVER['REQUEST_URI'] ) ) );
 	}
-
-
 }

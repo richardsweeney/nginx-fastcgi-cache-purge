@@ -15,8 +15,6 @@ final class Cache_Purge {
 	 * We'll register all hooks here.
 	 */
 	private function __construct() {
-//		dd( trailingslashit( NGINX_CACHE_PATH ) );
-
 		add_action( 'edit_post', [ $this, 'purge_cache_by_post_id' ] );
 		add_action( 'template_redirect', [ $this, 'manually_purge_cache' ] );
 	}
@@ -40,18 +38,16 @@ final class Cache_Purge {
 	 * Manually purge the cache if the correct GET params are set.
 	 */
 	public function manually_purge_cache() {
-		if ( isset( $_GET[ 'purge_post_id' ] ) ) {
-			$post_id = (int) $_GET[ 'purge_post_id' ];
+		if ( isset( $_GET['purge_post_id'] ) ) {
+			$post_id = (int) $_GET['purge_post_id'];
 
 			$this->purge_cache_by_post_id( $post_id );
-		}
-		elseif ( isset( $_GET[ 'ship_nginx_purge_cache' ] ) ) {
-			$uri = parse_url( $_SERVER[ 'REQUEST_URI' ] );
-			$url = home_url( $uri[ 'path' ] );
+		} elseif ( isset( $_GET['ship_nginx_purge_cache'] ) ) {
+			$uri = parse_url( $_SERVER['REQUEST_URI'] );
+			$url = home_url( $uri['path'] );
 
 			$this->purge_cache_via_url( $url );
-		}
-		elseif ( isset( $_GET['ship_nginx_purge_cache_all'] ) ) {
+		} elseif ( isset( $_GET['ship_nginx_purge_cache_all'] ) ) {
 			$this->purge_all_caches();
 		}
 	}
@@ -125,10 +121,10 @@ final class Cache_Purge {
 
 		$url  = esc_url( $url );
 		$url  = parse_url( $url );
-		$hash = md5( $url[ 'scheme' ] . 'GET' . $url[ 'host' ] . $url[ 'path' ] );
+		$hash = md5( $url['scheme'] . 'GET' . $url['host'] . $url['path'] );
 		$path = trailingslashit( NGINX_CACHE_PATH );
 
-		return $path . substr( $hash, -1 ) . '/' . substr( $hash, -3, 2 ) . '/' . $hash;
+		return $path . substr( $hash, - 1 ) . '/' . substr( $hash, - 3, 2 ) . '/' . $hash;
 	}
 
 	/**
@@ -173,5 +169,4 @@ final class Cache_Purge {
 
 		return ( $dir === trailingslashit( NGINX_CACHE_PATH ) ) ? true : rmdir( $dir );
 	}
-
 }
